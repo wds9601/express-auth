@@ -6,17 +6,35 @@
             <div class="row">
                 <div class="input-field col s6">
                     <input id="first" type="text" class="validate" name="first">
-                    <label for="email">First Name</label>
+                    <label for="first">First Name</label>
                 </div>
                 <div class="input-field col s6">
                     <input id="last" type="text" class="validate" name="last">
-                    <label for="email">Last Name</label>
+                    <label for="last">Last Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s4">
+                    <input id="email" type="email" class="validate" name="email">
+                    <label for="email">Email</label>
+                </div>
+            
+            
+                <div class="input-field col s4">
+                    <input id="username" type="text" class="validate" name="username">
+                    <label for="username">Display Name</label>
+                </div>
+            
+            
+                <div class="input-field col s4">
+                    <input id="birthdate" type="text" class="datepicker validate" name="birthdate">
+                    <label for="birthdate">Birth Date</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="email" type="email" class="validate" name="email">
-                    <label for="email">Email</label>
+                    <input id="photoURL" type="url" class="validate" name="photoURL">
+                    <label for="photoURL">Profile Photo URL</label>
                 </div>
             </div>
             <div class="row">
@@ -29,9 +47,30 @@
                     <label for="verify_password">Verify Password</label>
                 </div>
             </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="bio" class="materialize-textarea validate" name="bio"></textarea>
+                    <label for="bio">User Bio</label>
+                </div>
+            </div>
             <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up
                 <i class="material-icons right">send</i>
             </button>
         </div>
     </form>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    let elems = document.querySelectorAll('.datepicker');
+    let startDate = new Date()
+    startDate.setFullYear(now.getFullYear() - 30)
+
+    var instances = M.Datepicker.init(elems, {
+        autoClose: true,
+        defaultDate: startDate,
+        minYear: startDate.getFullYear() -70,
+        maxYear: (new Date()).getFullYear()
+    });
+  });
+</script>
