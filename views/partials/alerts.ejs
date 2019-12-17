@@ -1,0 +1,38 @@
+<div id="toast-container"></div>
+<script>
+    let errors = '<%- alerts.error %>'
+    document.addEventListener('DOMContentLoaded', function() {
+        if (errors) {
+            M.toast({
+                html: errors,
+                classes: 'red',     //Further styling required for placement in style.css
+                displayLength: 2000
+            })
+        }
+  })
+</script>
+
+
+
+
+
+<!-- <% if(alerts && alerts.error) { %>
+    <div class="card-panel red lighten-4 red-text closeable">
+        <button class="close right red">
+            <i class="material-icons">close</i>
+        </button>
+        <% alerts.error.forEach(msg => { %>
+            <p><%= msg %></p>
+        <% }) %>
+    </div>
+<% } %>
+
+<script>
+    [...document.getElementsByClassName('close')].forEach(element => {
+        element.addEventListener('click', function() {
+            [...document.getElementsByClassName('closeable')].forEach(box => {
+                box.style.display = 'none';
+            });
+        });
+    });
+</script> -->
