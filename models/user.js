@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: {
           args: [1, 255],
-          msg: 'Cmon, you have a name, right?'
+          msg: 'Cmon, you have a first name, right?'
         }
       }
     },

@@ -27,7 +27,7 @@
             
             
                 <div class="input-field col s4">
-                    <input id="birthdate" type="text" class="validate datepicker" name="birthdate" value="<%= data.birthdate %>">
+                    <input id="birthdate" type="text" class="datepicker validate" name="birthdate" value="<%= data.birthdate %>">
                     <label for="birthdate">Birth Date</label>
                 </div>
             </div>
@@ -64,9 +64,9 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    let elems = document.querySelectorAll('.datepicker');
+    let elems = document.querySelectorAll('.datepicker')
     let startDate = new Date()
-    startDate.setFullYear(now.getFullYear() - 30)
+    startDate.setFullYear(startDate.getFullYear() - 30)
 
     var instances = M.Datepicker.init(elems, {
         autoClose: true,
