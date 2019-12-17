@@ -6,8 +6,10 @@ module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define('user', {
     firstname: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        notNull: {
+        len: {
+          args: [1, 255],
           msg: 'Cmon, you have a name, right?'
         }
       }
@@ -58,6 +60,13 @@ module.exports = (sequelize, DataTypes) => {
   user.associate = function(models) {
     // associations can be defined here
   };
+
+  user.prototype.validPassword = function(typedInPassword) {
+    //Determine if typedInPassword hashes to the same thing as the existing hash
+    let correctPassword = bcrypt.compareSync(typedInPasseword, this.password)
+    //Return the result of that comparison
+    return correctPassword
+  }
 
   return user;
 };
