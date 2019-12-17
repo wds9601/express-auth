@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('*', (req, res) => {
-    res.render('error404')
+    res.render('error')
 })
 
 app.listen(process.env.PORT || 3000, () => { //will look in .env file for a port, if there isnt one, will use 3000.  would write PORT=#### in .env
