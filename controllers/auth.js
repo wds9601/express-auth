@@ -4,25 +4,33 @@ let router = require('express').Router()
 //includ a reference to the models for db access
 let db = require('../models')
 
+//refernce to passport module
+let passport = require('../config/passportConfig')
+
 //Define routes
 router.get('/login', (req, res) => {
     res.render('auth/login')
 })
 
-router.post('/login', (req, res) => {
-    res.send(req.body)
-})
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/profile',
+    successFlash: 'Yay, we logged in!',
+    failureRedirect: '/auth/login',
+    failureFlash: 'Invalid Credentials :('
+    
+}))
 
 router.get('/signup', (req, res) => {
     res.render('auth/signup', { data: {} })
 })
 
-router.post('/signup', (req, res) => {
+router.post('/signup', (req, res, next) => {
     if (req.body.password !== req.body.verify_password) {
         //User's password verfication doesnt match - probably a typo
         req.flash('error', 'Passwords do not match!')
         res.render('auth/signup', { data: req.body, alerts: req.flash() })
-    } else {
+    }
+    else {
         //Attempt to find a user by their email. if not found, then create them
         db.user.findOrCreate({
             where: { email: req.body.email },
@@ -32,8 +40,12 @@ router.post('/signup', (req, res) => {
             if (wasCreated) {
                 //This is the intended user action (they did things correctly)
                 //Now i want to automatically of in the user to their new acct
-                //TODO: log in the user
-                res.send('Successful Create user - go look at db')
+                passport.authenticate('local', {
+                    successRedirect: '/profile',
+                    successFlash: 'Yay, successful account creation!',
+                    failureRedirect: '/auth/login',
+                    failureFlash: 'This shouldnt happen'
+                })(req, res, next)
             }
             else {
                 //The user already has an account 
@@ -64,7 +76,9 @@ router.post('/signup', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-    res.send('GET /auth/logout')
+    req.logout() //throws away session data of logged in user
+    req.flash('success', 'Goodbye, see you next time!')
+    res.redirect('/')
 })
 
 //Export router object so we can include it in other files

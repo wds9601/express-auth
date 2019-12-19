@@ -4,9 +4,17 @@
         <a href="#" class="brand-logo">WDS</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/">Home</a></li>
+            <% if(!user) {%>
             <li><a href="/auth/login">Login</a></li>
             <li><a href="/auth/signup">Signup</a></li>
-            <li><a href="/auth/logout">Logout</a></li>
+            <% } else { %>
+                <li>Hi, <%= user.username %> ! </li>
+                <% if (user.admin) { %>
+                    <li><a href="/profile/admin">Admin</a></li>
+                <% } %>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+                <% } %>
           </ul>
     </div>
 </nav>
