@@ -93,5 +93,19 @@ router.get('/callback/github', passport.authenticate('github', {
     failureFlash: 'Github does not like it'
 }))
 
+//Facebook login routes
+//this is the route our app uses
+router.get('/facebook', passport.authenticate('facebook', {
+    scope: ['public_profile', 'email', 'birthday']
+}))
+
+//the route FB uses
+router.get('/callback/facebook', passport.authenticate('facebook', {
+    successRedirect: '/profile',
+    successFlash: 'Facebook login success',
+    failureRedirect: '/auth/login',
+    failureFlash: 'Facebook does not like it'
+}))
+
 //Export router object so we can include it in other files
 module.exports = router

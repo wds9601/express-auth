@@ -8,6 +8,10 @@ main {
     text-align: center;
 }
 
+footer {
+    margin-top: 10px;
+}
+
 #toast-container {
     left: 40% !important;
     right: auto !important;
