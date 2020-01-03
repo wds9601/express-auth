@@ -12,7 +12,9 @@
         <tbody>
         <% repos.forEach(r => { %>
             <tr>
-                <td><%= r.name %></td>
+                <td>
+                    <a href="<%= r.html_url %>"><%= r.name %></a>
+                </td>
                 <td><%= r.language %></td>
                 <td><%= r.created_at %></td>
                 <td><%= r.updated_at %></td>
