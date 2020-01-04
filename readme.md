@@ -57,6 +57,14 @@ This is some boilerplate code for projects using Auhtorization/Login.  This is b
 git clone <repo link> <new name>
 ```
 
+#### EXTRA STEP
+
+Switch to the `with-oauth` branch!
+
+```
+git checkout with-oauth
+```
+
 #### 2. Install node modules from package.JSON
 
 ```
